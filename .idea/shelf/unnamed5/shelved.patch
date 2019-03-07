@@ -1,0 +1,51 @@
+Index: app/src/main/java/com/example/zheng/qrcode/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.zheng.qrcode;\r\n\r\nimport android.support.v7.app.AppCompatActivity;\r\nimport android.os.Bundle;\r\n\r\npublic class MainActivity extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_main);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/zheng/qrcode/MainActivity.java	(date 1551959739000)
++++ app/src/main/java/com/example/zheng/qrcode/MainActivity.java	(revision )
+@@ -1,7 +1,7 @@
+ package com.example.zheng.qrcode;
+ 
+-import android.support.v7.app.AppCompatActivity;
+ import android.os.Bundle;
++import android.support.v7.app.AppCompatActivity;
+ 
+ public class MainActivity extends AppCompatActivity {
+ 
+@@ -9,5 +9,6 @@
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_main);
++//        startActivity(new Intent(this, CaptureActivity.class));
+     }
+ }
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.application'\r\n\r\nandroid {\r\n    compileSdkVersion 26\r\n    defaultConfig {\r\n        applicationId \"com.example.zheng.qrcode\"\r\n        minSdkVersion 21\r\n        targetSdkVersion 22\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n    }\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n}\r\n\r\ndependencies {\r\n    implementation fileTree(include: ['*.jar'], dir: 'libs')\r\n    implementation 'com.android.support:appcompat-v7:26.1.0'\r\n    implementation 'com.android.support.constraint:constraint-layout:1.1.3'\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(date 1551959739000)
++++ app/build.gradle	(revision )
+@@ -17,8 +17,16 @@
+     }
+ }
+ 
++repositories {
++    flatDir {
++        dirs 'libs'
++    }
++}
++
+ dependencies {
+     implementation fileTree(include: ['*.jar'], dir: 'libs')
+     implementation 'com.android.support:appcompat-v7:26.1.0'
+     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
++
++    implementation(name: 'qrcodeLibrary-debug', ext: 'aar')
+ }
