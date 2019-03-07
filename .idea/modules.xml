@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/QRCode.iml" filepath="$PROJECT_DIR$/QRCode.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/qrcode/qrcode.iml" filepath="$PROJECT_DIR$/qrcode/qrcode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qrcodeLibrary/qrcodeLibrary.iml" filepath="$PROJECT_DIR$/qrcodeLibrary/qrcodeLibrary.iml" />
     </modules>
   </component>
 </project>
