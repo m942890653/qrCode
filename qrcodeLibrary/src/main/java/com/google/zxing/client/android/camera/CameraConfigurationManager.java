@@ -33,6 +33,7 @@ import com.google.zxing.client.android.camera.open.OpenCamera;
 /**
  * A class which deals with reading, parsing, and setting the camera parameters which are used to
  * configure the camera hardware.
+ * 该类主要负责设置相机的参数信息，获取最佳的预览界面
  */
 @SuppressWarnings("deprecation") // camera APIs
 final class CameraConfigurationManager {
@@ -42,7 +43,9 @@ final class CameraConfigurationManager {
     private final Context context;
     private int cwNeededRotation;
     private int cwRotationFromDisplayToCamera;
+    //屏幕分辨率
     private Point screenResolution;
+    //相机分辨率
     private Point cameraResolution;
     private Point bestPreviewSize;
     private Point previewSizeOnScreen;
@@ -92,20 +95,6 @@ final class CameraConfigurationManager {
             cwRotationFromNaturalToCamera = (360 - cwRotationFromNaturalToCamera) % 360;
             Log.i(TAG, "Front camera overriden to: " + cwRotationFromNaturalToCamera);
         }
-
-    /*
-    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-    String overrideRotationString;
-    if (camera.getFacing() == CameraFacing.FRONT) {
-      overrideRotationString = prefs.getString(PreferencesActivity.KEY_FORCE_CAMERA_ORIENTATION_FRONT, null);
-    } else {
-      overrideRotationString = prefs.getString(PreferencesActivity.KEY_FORCE_CAMERA_ORIENTATION, null);
-    }
-    if (overrideRotationString != null && !"-".equals(overrideRotationString)) {
-      Log.i(TAG, "Overriding camera manually to " + overrideRotationString);
-      cwRotationFromNaturalToCamera = Integer.parseInt(overrideRotationString);
-    }
-     */
 
         cwRotationFromDisplayToCamera =
                 (360 + cwRotationFromNaturalToCamera - cwRotationFromNaturalToDisplay) % 360;

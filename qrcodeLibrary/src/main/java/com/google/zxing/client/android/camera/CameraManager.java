@@ -44,8 +44,8 @@ public final class CameraManager {
 
     private static final int MIN_FRAME_WIDTH = 240;
     private static final int MIN_FRAME_HEIGHT = 240;
-    private static final int MAX_FRAME_WIDTH = 1200; // = 5/8 * 1920
-    private static final int MAX_FRAME_HEIGHT = 675; // = 5/8 * 1080
+    private static final int MAX_FRAME_WIDTH = 1440; // = 3/4 * 1920
+    private static final int MAX_FRAME_HEIGHT = 810; // = 3/4 * 1080
 
     private final Context context;
     private final CameraConfigurationManager configManager;
@@ -224,6 +224,11 @@ public final class CameraManager {
 
             int width = findDesiredDimensionInRange(screenResolution.x, MIN_FRAME_WIDTH, MAX_FRAME_WIDTH);
             int height = findDesiredDimensionInRange(screenResolution.y, MIN_FRAME_HEIGHT, MAX_FRAME_HEIGHT);
+            Log.d(TAG, "getFramingRect width: " + width + ",height: " + height);
+            //取景框设为正方形
+            int min = Math.min(width, height);
+            width = min;
+            height = min;
 
             int leftOffset = (screenResolution.x - width) / 2;
             int topOffset = (screenResolution.y - height) / 2;
@@ -234,7 +239,7 @@ public final class CameraManager {
     }
 
     private static int findDesiredDimensionInRange(int resolution, int hardMin, int hardMax) {
-        int dim = 5 * resolution / 8; // Target 5/8 of each dimension
+        int dim = 3 * resolution / 4; // Target 3/4 of each dimension
         if (dim < hardMin) {
             return hardMin;
         }

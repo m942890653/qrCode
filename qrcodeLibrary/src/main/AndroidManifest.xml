@@ -27,20 +27,13 @@
         android:name="android.hardware.wifi"
         android:required="false" />
 
-    <application
-        android:allowBackup="true"
-        android:label="@string/app_name">
+    <application>
         <activity
             android:name=".CaptureActivity"
             android:clearTaskOnLaunch="true"
-            android:screenOrientation="sensorLandscape"
             android:stateNotNeeded="true"
             android:theme="@style/CaptureTheme"
             android:windowSoftInputMode="stateAlwaysHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
             <intent-filter>
                 <action android:name="com.google.zxing.client.android.SCAN" />
                 <category android:name="android.intent.category.DEFAULT" />

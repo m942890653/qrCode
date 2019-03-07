@@ -37,14 +37,15 @@ import java.util.regex.Pattern;
 @SuppressWarnings("deprecation") // camera APIs
 public final class CameraConfigurationUtils {
 
-    private static final String TAG = "CameraConfiguration";
+    private static final String TAG = "CameraConfigurationU";
 
     private static final Pattern SEMICOLON = Pattern.compile(";");
 
     private static final int MIN_PREVIEW_PIXELS = 480 * 320; // normal screen
     private static final float MAX_EXPOSURE_COMPENSATION = 1.5f;
     private static final float MIN_EXPOSURE_COMPENSATION = 0.0f;
-    private static final double MAX_ASPECT_DISTORTION = 0.15;
+    //    private static final double MAX_ASPECT_DISTORTION = 0.15;
+    private static final double MAX_ASPECT_DISTORTION = 0.20;//原值0.15，为了平板
     private static final int MIN_FPS = 10;
     private static final int MAX_FPS = 20;
     private static final int AREA_PER_1000 = 400;
@@ -271,7 +272,7 @@ public final class CameraConfigurationUtils {
     }
 
     public static Point findBestPreviewSizeValue(Camera.Parameters parameters, Point screenResolution) {
-
+        //获取全部支持预览的分辨率
         List<Camera.Size> rawSupportedSizes = parameters.getSupportedPreviewSizes();
         if (rawSupportedSizes == null) {
             Log.w(TAG, "Device returned no supported preview sizes; using default");
@@ -290,7 +291,13 @@ public final class CameraConfigurationUtils {
             Log.i(TAG, "Supported preview sizes: " + previewSizesString);
         }
 
+        //分辨率比例(大值比小值)
         double screenAspectRatio = screenResolution.x / (double) screenResolution.y;
+
+        //竖屏
+        if (screenResolution.x < screenResolution.y) {
+            screenAspectRatio = screenResolution.y / (double) screenResolution.x;
+        }
 
         // Find a suitable size, with max resolution
         int maxResolution = 0;
