@@ -18,10 +18,14 @@ android {
         }
     }
 
+    android.libraryVariants.all { variant ->
+        variant.outputs.all {
+            def fileName = "zm-qrcode.aar"
+            outputFileName = fileName
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation 'com.android.support:appcompat-v7:26.1.0'
 }
