@@ -8,8 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.zxing.client.android.CaptureActivity;
-
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final int REQUEST_CODE = 100;
@@ -23,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
         qRCodeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mRvScanResult.setText("");
                 //调用第三方ZXing库的api进行扫描
-                startActivityForResult(new Intent(MainActivity.this, CaptureActivity.class), REQUEST_CODE);
+                startActivityForResult(new Intent(MainActivity.this, MyCaptureActivity.class), REQUEST_CODE);
+                mRvScanResult.setText("");
             }
         });
         mRvScanResult = findViewById(R.id.tv_scan_result);
