@@ -21,4 +21,25 @@
         android:layout_height="wrap_content"
         tools:text="扫描结果" />
 
+    <EditText
+        android:id="@+id/et_create_qrcode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="输入生成二维码中的内容" />
+
+    <Button
+        android:id="@+id/bt_create_qrcode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:text="生成二维码" />
+
+    <ImageView
+        android:id="@+id/iv_qr_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="展示生成的二维码" />
+
 </LinearLayout>

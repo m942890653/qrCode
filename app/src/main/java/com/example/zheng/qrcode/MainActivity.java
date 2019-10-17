@@ -2,11 +2,16 @@ package com.example.zheng.qrcode;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.zxing.client.android.QRCodeUtil;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -27,6 +32,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         mRvScanResult = findViewById(R.id.tv_scan_result);
+
+        final EditText etCreateQRCode = findViewById(R.id.et_create_qrcode);
+        View btCreateQRCode = findViewById(R.id.bt_create_qrcode);//生成二维码按钮
+        final ImageView ivQrCode = findViewById(R.id.iv_qr_code);
+        btCreateQRCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bitmap qrCodeBitmap = QRCodeUtil.createQRCodeBitmap(etCreateQRCode.getText().toString(), 800);
+                if (qrCodeBitmap != null) {
+                    ivQrCode.setImageBitmap(qrCodeBitmap);
+                }
+            }
+        });
     }
 
     @Override
